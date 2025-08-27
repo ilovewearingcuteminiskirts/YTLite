@@ -294,7 +294,11 @@ jobs:
           mv packages/*.deb ${{ github.workspace }}/demc.deb
         env:
           THEOS: ${{ github.workspace }}/theos
-          
+
+      - name: Inject tweaks into IPA
+        run: |
+          tweaks="ytplus.deb OpenYoutubeSafariExtension.appex"
+
           for f in *.deb; do
             if [ -f "$f" ]; then
               tweaks="$tweaks $f"
